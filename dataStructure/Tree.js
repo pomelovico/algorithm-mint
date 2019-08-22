@@ -134,7 +134,7 @@ function createTree(){
   return tree;
 }
 
-function createRadomTree(count = 10){
+function createRandomTree(count = 10){
   const tree = new Tree();
   Array.from({length:count}).fill('').forEach(()=>{
     tree.insert(Math.floor(Math.random() * 100));
@@ -144,4 +144,4 @@ function createRadomTree(count = 10){
 
 module.exports.Tree = Tree;
 module.exports.createTree = createTree;
-module.exports.createRadomTree = createRadomTree;
+module.exports.createRandomTree = createRandomTree;
