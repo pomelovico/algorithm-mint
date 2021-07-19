@@ -31,15 +31,21 @@ const toList = (root) => {
   const list = [];
   while (queue.length) {
     const node = queue.shift();
-    list.push(node.val);
-    if (node.left) {
+    if (node) {
+      list.push(node.val);
       queue.push(node.left);
-    }
-    if (node.right) {
       queue.push(node.right);
+    } else {
+      list.push(null);
     }
   }
-  return list;
+
+  return list.reduceRight((acc, val) => {
+    if (val === null && !acc.length) {
+      return acc;
+    }
+    return [val, ...acc];
+  }, []);
 };
 
 const inOrder = (root) => {
