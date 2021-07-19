@@ -15,24 +15,19 @@ const tree = require("./buildTree");
 
 var isValidBST = function (root) {
   let node = root;
-  const stack = [root];
+  const stack = [];
   const list = [];
-  while (stack.length) {
-    while (node && node.left) {
-      stack.push(node.left);
+  while (stack.length || node) {
+    if (node) {
+      stack.push(node);
       node = node.left;
-    }
-
-    node = stack.pop();
-    if (list[list.length - 1] >= node.val) {
-      return false;
-    }
-    list.push(node.val);
-    if (node.right) {
-      stack.push(node.right);
-      node = node.right;
     } else {
-      node = null;
+      node = stack.pop();
+      if (list[list.length - 1] >= node.val) {
+        return false;
+      }
+      list.push(node.val);
+      node = node.right;
     }
   }
   return true;
