@@ -1,19 +1,5 @@
 const lengthOfLongestSubstring = (s) => {
-  const sArr = s.split("");
-  // let max = 0;
-  // let tempQueue = [];
-  // for (let i = 0; i < sArr.length; i++) {
-  //   const next = sArr[i];
-  //   const index = tempQueue.indexOf(next);
-  //   if (index !== -1) {
-  //     tempQueue = tempQueue.slice(index + 1);
-  //     i--;
-  //   } else {
-  //     tempQueue.push(next);
-  //     max = Math.max(tempQueue.length, max);
-  //   }
-  // }
-  // return max;
+  const sArr = s.split('');
   const map = {};
   let max = 0;
   for (let end = 0, start = 0; end < sArr.length; end++) {
@@ -29,4 +15,22 @@ const lengthOfLongestSubstring = (s) => {
   return max;
 };
 
-console.log(lengthOfLongestSubstring("abcabcdb"));
+const lengthOfLongestSubstring2 = (s) => {
+  const sArr = s.split('');
+  let i = 0;
+  let j = 0;
+  let max = 0;
+  let set = new Set();
+  while (i < sArr.length && j < sArr.length) {
+    if (!set.has(sArr[j])) {
+      set.add(sArr[j++]);
+      max = Math.max(max, j - i);
+    } else {
+      set.delete(sArr[i++]);
+    }
+  }
+  return max;
+};
+
+console.log(lengthOfLongestSubstring('abcabcdba'));
+console.log(lengthOfLongestSubstring2('abcabcdba'));
