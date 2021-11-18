@@ -73,4 +73,5 @@ const inOrder = (root) => {
 module.exports = {
   build,
   toList,
+  TreeNode,
 };
